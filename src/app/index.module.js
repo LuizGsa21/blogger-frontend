@@ -7,6 +7,7 @@ import { MainController } from './main/main.controller';
 import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
 import { Events } from '../app/components/events/events.service.js';
+import { Messaging } from '../app/components/messaging/messaging.service.js'
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
 
@@ -19,6 +20,7 @@ angular.module('bloggerFrontend', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanit
   .service('githubContributor', GithubContributorService)
   .service('webDevTec', WebDevTecService)
   .service('events', Events)
+  .service('messaging', Messaging)
   .controller('MainController', MainController)
   .directive('acmeNavbar', NavbarDirective)
   .directive('acmeMalarkey', MalarkeyDirective);
