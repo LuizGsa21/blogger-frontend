@@ -9,12 +9,12 @@ describe('service events', () => {
   }));
 
   it('should define events for user login.', () => {
-    expect(events.LOGIN_USER).toBeDefined();
-    expect(events.LOGIN_USER_COMPLETE).toBeDefined();
-    expect(events.LOGIN_USER_FAILED).toBeDefined();
-    expect(events.LOGOUT_USER).toBeDefined();
-    expect(events.LOGOUT_USER_COMPLETE).toBeDefined();
-    expect(events.LOGOUT_USER_FAILED).toBeDefined();
+    expect(events.USER_LOGIN).toBeDefined();
+    expect(events.USER_LOGIN_COMPLETE).toBeDefined();
+    expect(events.USER_LOGIN_FAILED).toBeDefined();
+    expect(events.USER_LOGOUT).toBeDefined();
+    expect(events.USER_LOGOUT_COMPLETE).toBeDefined();
+    expect(events.USER_LOGOUT_FAILED).toBeDefined();
   });
 
   it('should define events for http requests', () => {
