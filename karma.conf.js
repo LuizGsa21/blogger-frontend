@@ -1,5 +1,3 @@
-'use strict';
-
 var path = require('path');
 var conf = require('./gulp/conf');
 
@@ -54,10 +52,10 @@ module.exports = function(config) {
 
     frameworks: ['jasmine'],
 
-    browsers : ['PhantomJS'],
+    browsers : ['Chrome'],
 
-    plugins : [
-      'karma-phantomjs-launcher',
+    plugins: [
+      'karma-chrome-launcher',
       'karma-coverage',
       'karma-jasmine',
       'karma-ng-html2js-preprocessor'
