@@ -72,6 +72,7 @@ module.exports = function(config) {
       '/assets/': path.join('/base/', conf.paths.src, '/assets/')
     }
   };
+  configuration.files.unshift('src/app/fixtures/**/*.js');
 
   // This is the default preprocessors configuration for a usage with Karma cli
   // The coverage preprocessor is added in gulp/unit-test.js only for single tests

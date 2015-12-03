@@ -10,6 +10,7 @@ import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service'
 import { Events } from '../app/components/events/events.service.js';
 import { Authentication } from '../app/components/authentication/authentication.factory.js';
 import { Messaging } from '../app/components/messaging/messaging.service.js'
+import { model } from '../app/components/model/model.factory.js'
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
 
@@ -25,6 +26,7 @@ angular.module('bloggerFrontend', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanit
   .service('events', Events)
   .service('messaging', Messaging)
   .service('authentication', Authentication)
+  .factory('model', model)
   .controller('MainController', MainController)
-  .directive('acmeNavbar', NavbarDirective)
+  .directive('appNavbar', NavbarDirective)
   .directive('acmeMalarkey', MalarkeyDirective);
