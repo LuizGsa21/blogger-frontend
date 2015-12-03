@@ -1,39 +1,34 @@
-/**
- * @todo Complete the test
- * This example is not perfect.
- * Test should check if MomentJS have been called
- */
 describe('directive navbar', function() {
-  let vm;
   let element;
-  let timeInMs;
+  let $element;
+  let compiledElement;
+  let scope;
 
   beforeEach(angular.mock.module('bloggerFrontend'));
 
   beforeEach(inject(($compile, $rootScope) => {
-    const currentDate = new Date();
-    timeInMs = currentDate.setHours(currentDate.getHours() - 24);
+    let categories = {
+      data: [
+        {id: 1, attributes: {name: 'PHP'}, links: {self: '/categories/1'}},
+        {id: 2, attributes: {name: 'Python'}, links: {self: '/categories/2'}},
+        {id: 3, attributes: {name: 'JavaScript'}, links: {self: '/categories/3'}}
+      ]
+    };
 
-    element = angular.element(`
-      <acme-navbar creation-date="${timeInMs}"></acme-navbar>
-    `);
-
-    $compile(element)($rootScope.$new());
+    scope = $rootScope.$new();
+    scope.items = categories.data;
+    element = angular.element(`<app-navbar categories="items"></app-navbar>`);
+    $element = $(element[0]);
+    compiledElement = $compile(element)(scope);
     $rootScope.$digest();
-    vm = element.isolateScope().vm;
   }));
 
   it('should be compiled', () => {
     expect(element.html()).not.toEqual(null);
   });
 
-  it('should have isolate scope object with instanciate members', () => {
-    expect(vm).toEqual(jasmine.any(Object));
-
-    expect(vm.creationDate).toEqual(jasmine.any(Number));
-    expect(vm.creationDate).toEqual(timeInMs);
-
-    expect(vm.relativeDate).toEqual(jasmine.any(String));
-    expect(vm.relativeDate).toEqual('a day ago');
+  it('should have all categories listed.', () => {
+    var $links = $element.find('.dropdown-menu > li');
+    expect($links.length).toBe(3);
   });
 });

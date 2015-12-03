@@ -1,25 +1,25 @@
 export function NavbarDirective() {
   'ngInject';
-
-  let directive = {
+  'ui.bootstrap';
+  return {
     restrict: 'E',
     templateUrl: 'app/components/navbar/navbar.html',
     scope: {
-        creationDate: '='
+      categories: '='
     },
     controller: NavbarController,
-    controllerAs: 'vm',
+    controllerAs: 'nv',
     bindToController: true
   };
-
-  return directive;
 }
 
 class NavbarController {
-  constructor (moment) {
+  constructor () {
     'ngInject';
-
-    // "this.creation" is available by directive option "bindToController: true"
-    this.relativeDate = moment(this.creationDate).fromNow();
+    // "this.categories" is available by directive option "bindToController: true"
+    this.isCollapsed = true;
+    this.toggleNavbar = () => {
+      this.isCollapsed = !this.isCollapsed;
+    };
   }
 }
