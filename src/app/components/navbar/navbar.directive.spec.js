@@ -1,7 +1,6 @@
 describe('directive navbar', function() {
   let element;
   let $element;
-  let compiledElement;
   let scope;
 
   beforeEach(angular.mock.module('bloggerFrontend'));
@@ -18,8 +17,8 @@ describe('directive navbar', function() {
     scope = $rootScope.$new();
     scope.items = categories.data;
     element = angular.element(`<app-navbar categories="items"></app-navbar>`);
-    $element = $(element[0]);
-    compiledElement = $compile(element)(scope);
+    $element = angular.element(element[0]);
+    $compile(element)(scope);
     $rootScope.$digest();
   }));
 
