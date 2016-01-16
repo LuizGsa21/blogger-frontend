@@ -1,4 +1,10 @@
-export function model() {
+/**
+ * The Model contains all resources within the application.
+ *
+ * @returns {{update: Function, get: Function}}
+ * @constructor
+ */
+export function Model() {
   var _cache = {}, ng = angular;
 
   /**

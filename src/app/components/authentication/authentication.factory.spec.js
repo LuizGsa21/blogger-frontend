@@ -1,47 +1,47 @@
-describe('factory authentication', () => {
+describe('factory Authentication', () => {
   var module = angular.mock.module;
-  var messaging, events, authentication, $httpBackend, requestHandler, constants;
+  var Messaging, Events, Authentication, $httpBackend, requestHandler, constants;
 
   // Set up the module
   beforeEach(module('bloggerFrontend'));
 
-  // create mock for messaging service
+  // create mock for Messaging service
   beforeEach(() => {
-    messaging = {
+    Messaging = {
       publish: () => {},
       subscribe: () => {}
     };
-    spyOn(messaging, 'subscribe');
-    spyOn(messaging, 'publish');
-    // inject mock messaging service
+    spyOn(Messaging, 'subscribe');
+    spyOn(Messaging, 'publish');
+    // inject mock Messaging service
     module(($provide) => {
-      $provide.value('messaging', messaging);
+      $provide.value('Messaging', Messaging);
     });
   });
 
   // load global services
   beforeEach(inject(($injector) => {
-      events = $injector.get('events');
-      authentication = $injector.get('authentication');
+      Events = $injector.get('Events');
+      Authentication = $injector.get('Authentication');
       constants = $injector.get('constants');
     })
   );
 
   it('should be defined', () => {
-    expect(authentication).toBeDefined();
+    expect(Authentication).toBeDefined();
   });
 
   it("should expose it's API", () => {
-    expect(typeof authentication.login).toBe('function');
-    expect(typeof authentication.logout).toBe('function');
+    expect(typeof Authentication.login).toBe('function');
+    expect(typeof Authentication.logout).toBe('function');
   });
 
   it('should subscribe to user login event', () => {
-    expect(messaging.subscribe.calls.argsFor(0)[0]).toEqual(events.USER_LOGIN);
+    expect(Messaging.subscribe.calls.argsFor(0)[0]).toEqual(Events.USER_LOGIN);
   });
 
   it('should subscribe to user logout event', () => {
-    expect(messaging.subscribe.calls.argsFor(1)[0]).toEqual(events.USER_LOGOUT);
+    expect(Messaging.subscribe.calls.argsFor(1)[0]).toEqual(Events.USER_LOGOUT);
   });
 
   describe('login()', () => {
@@ -59,25 +59,25 @@ describe('factory authentication', () => {
     });
 
     it('should make request to USER_LOGIN_URL when called', () => {
-      authentication.login('user1', 'password1');
+      Authentication.login('user1', 'password1');
       $httpBackend.flush();
     });
 
     it('should publish to USER_LOGIN_COMPLETE, upon success', () => {
-      authentication.login('user1', 'password1');
+      Authentication.login('user1', 'password1');
       $httpBackend.flush();
-      expect(messaging.publish).toHaveBeenCalled();
-      expect(messaging.publish.calls.argsFor(0)[0]).toEqual(events.USER_LOGIN_COMPLETE);
-      expect(messaging.publish.calls.argsFor(0)[1][0].data).toEqual({data: {username: 'user1'}});
+      expect(Messaging.publish).toHaveBeenCalled();
+      expect(Messaging.publish.calls.argsFor(0)[0]).toEqual(Events.USER_LOGIN_COMPLETE);
+      expect(Messaging.publish.calls.argsFor(0)[1][0].data).toEqual({data: {username: 'user1'}});
     });
 
     it('should publish to USER_LOGIN_FAILED, upon failure', () => {
       requestHandler.respond(401, 'failed login');
-      authentication.login('user1', 'password1');
+      Authentication.login('user1', 'password1');
       $httpBackend.flush();
-      expect(messaging.publish).toHaveBeenCalled();
-      expect(messaging.publish.calls.argsFor(0)[0]).toEqual(events.USER_LOGIN_FAILED);
-      expect(messaging.publish.calls.argsFor(0)[1][0].data).toEqual('failed login');
+      expect(Messaging.publish).toHaveBeenCalled();
+      expect(Messaging.publish.calls.argsFor(0)[0]).toEqual(Events.USER_LOGIN_FAILED);
+      expect(Messaging.publish.calls.argsFor(0)[1][0].data).toEqual('failed login');
     });
   });
 
@@ -95,25 +95,25 @@ describe('factory authentication', () => {
     });
 
     it('should make request to USER_LOGOUT_URL when called', () => {
-      authentication.logout();
+      Authentication.logout();
       $httpBackend.flush();
     });
 
     it('should publish to USER_LOGOUT_COMPLETE, upon success', () => {
-      authentication.logout();
+      Authentication.logout();
       $httpBackend.flush();
-      expect(messaging.publish).toHaveBeenCalled();
-      expect(messaging.publish.calls.argsFor(0)[0]).toEqual(events.USER_LOGOUT_COMPLETE);
-      expect(messaging.publish.calls.argsFor(0)[1][0].data).toEqual('success');
+      expect(Messaging.publish).toHaveBeenCalled();
+      expect(Messaging.publish.calls.argsFor(0)[0]).toEqual(Events.USER_LOGOUT_COMPLETE);
+      expect(Messaging.publish.calls.argsFor(0)[1][0].data).toEqual('success');
     });
 
     it('should publish to USER_LOGIN_FAILED, upon failure', () => {
       requestHandler.respond(401, 'failed');
-      authentication.logout();
+      Authentication.logout();
       $httpBackend.flush();
-      expect(messaging.publish).toHaveBeenCalled();
-      expect(messaging.publish.calls.argsFor(0)[0]).toEqual(events.USER_LOGOUT_FAILED);
-      expect(messaging.publish.calls.argsFor(0)[1][0].data).toEqual('failed');
+      expect(Messaging.publish).toHaveBeenCalled();
+      expect(Messaging.publish.calls.argsFor(0)[0]).toEqual(Events.USER_LOGOUT_FAILED);
+      expect(Messaging.publish.calls.argsFor(0)[1][0].data).toEqual('failed');
     });
   });
 

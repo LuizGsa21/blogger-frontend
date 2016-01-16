@@ -8,7 +8,7 @@ import { MainController } from './main/main.controller';
 import { Events } from '../app/components/events/events.service.js';
 import { Authentication } from '../app/components/authentication/authentication.factory.js';
 import { Messaging } from '../app/components/messaging/messaging.service.js'
-import { model } from '../app/components/model/model.factory.js'
+import { Model } from '../app/components/model/model.factory.js'
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 
 angular.module('bloggerFrontend', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap'])
@@ -17,9 +17,9 @@ angular.module('bloggerFrontend', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanit
   .config(config)
   .config(routerConfig)
   .run(runBlock)
-  .service('events', Events)
-  .service('messaging', Messaging)
-  .service('authentication', Authentication)
-  .factory('model', model)
+  .service('Events', Events)
+  .service('Messaging', Messaging)
+  .service('Authentication', Authentication)
+  .factory('Model', Model)
   .controller('MainController', MainController)
   .directive('appNavbar', NavbarDirective);

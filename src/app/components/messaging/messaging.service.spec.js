@@ -1,9 +1,9 @@
-describe('service messaging', () => {
-  var mock, messaging, event = Symbol('event');
+describe('service Messaging', () => {
+  var mock, Messaging, event = Symbol('event');
   beforeEach(angular.mock.module('bloggerFrontend'));
 
-  beforeEach(inject((_messaging_) => {
-    messaging = _messaging_;
+  beforeEach(inject((_Messaging_) => {
+    Messaging = _Messaging_;
     mock = {
       callback: () => {}
     };
@@ -11,18 +11,18 @@ describe('service messaging', () => {
   }));
 
   it('should be defined', () => {
-    expect(messaging).toBeDefined();
+    expect(Messaging).toBeDefined();
   });
 
   it("should expose it's API ", () => {
-    expect(typeof messaging.subscribe).toBe('function');
-    expect(typeof messaging.unsubscribe).toBe('function');
-    expect(typeof messaging.publish).toBe('function');
+    expect(typeof Messaging.subscribe).toBe('function');
+    expect(typeof Messaging.unsubscribe).toBe('function');
+    expect(typeof Messaging.publish).toBe('function');
   });
 
   it('should be able to add subscribers and publish topics', () => {
-    messaging.subscribe(event, mock.callback);
-    messaging.publish(event, [1, 2, 3]);
+    Messaging.subscribe(event, mock.callback);
+    Messaging.publish(event, [1, 2, 3]);
     expect(mock.callback).toHaveBeenCalledWith(1, 2, 3);
   });
 

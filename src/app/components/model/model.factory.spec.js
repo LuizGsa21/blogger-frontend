@@ -1,13 +1,13 @@
 'use strict';
-describe('service model', function() {
+describe('service Model', function() {
 
   var _fixture, Model;
 
   beforeEach(angular.mock.module('bloggerFrontend'));
 
-  beforeEach(inject(($window, _model_) => {
+  beforeEach(inject(($window, _Model_) => {
     _fixture = $window.fixtures.getArticle3();
-    Model = _model_;
+    Model = _Model_;
     Model.update(_fixture['data']);
     Model.update(_fixture['included']);
   }));
