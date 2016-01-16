@@ -1,4 +1,4 @@
-/* global malarkey:false, moment:false */
+/* global moment:false */
 
 import * as constants  from './index.constants.js';
 import { config } from './index.config';
@@ -11,9 +11,8 @@ import { Messaging } from '../app/components/messaging/messaging.service.js'
 import { model } from '../app/components/model/model.factory.js'
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 
-angular.module('bloggerFrontend', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'toastr'])
+angular.module('bloggerFrontend', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap'])
   .constant('constants', constants)
-  .constant('malarkey', malarkey)
   .constant('moment', moment)
   .config(config)
   .config(routerConfig)
