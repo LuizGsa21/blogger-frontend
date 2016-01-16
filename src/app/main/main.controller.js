@@ -1,12 +1,15 @@
 export class MainController {
-  constructor () {
+  constructor (Categories) {
     'ngInject';
 
-    this.categories = [
-      {id: 1, name: 'PHP', links: '/categories/1'},
-      {id: 2, name: 'Python', links: '/categories/2'},
-      {id: 3, name: 'JavaScript', links: '/categories/3'}
-    ];
+    this.categories = Categories.query((data) => {
+      // on success
+      this.categories = data.data;
+    }, () => {
+      // on fail
+
+    });
 
   }
+
 }
