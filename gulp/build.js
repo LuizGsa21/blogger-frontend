@@ -95,3 +95,11 @@ gulp.task('clean', function () {
 });
 
 gulp.task('build', ['html', 'fonts', 'other']);
+
+gulp.task('ngdocs', [], function () {
+  var gulpDocs = require('gulp-ngdocs');
+  var config = require('../ngdocs-config.json');
+  return gulp.src([conf.paths.src + '/**/*.js', '!' + conf.paths.src + '/**/*.spec.js'])
+    .pipe(gulpDocs.process(config))
+    .pipe(gulp.dest(conf.paths.docs));
+});
