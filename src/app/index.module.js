@@ -6,6 +6,7 @@ import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
 import { MainController } from './main/main.controller';
 //import { ArticlesController } from './view_articles/articles.controller.js';
+import { BaseController } from './components/base/base.controller.js';
 import { Events } from '../app/components/events/events.service.js';
 import { Authentication } from '../app/components/authentication/authentication.factory.js';
 import { Messaging } from '../app/components/messaging/messaging.service.js'
@@ -55,12 +56,16 @@ angular.module('app', [
   'ngResource',
   'ui.router',
   'ui.bootstrap',
-  'resources'
+  'resources',
+  'services'
 ])
   .constant('moment', moment)
   .config(config)
   .config(routerConfig)
+  .controller('BaseController', BaseController)
   .controller('MainController', MainController)
+
+
   //.controller('ArticlesController', ArticlesController)
   .directive('appNavbar', NavbarDirective)
   .run(runBlock);

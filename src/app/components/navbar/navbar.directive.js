@@ -24,9 +24,18 @@ export function NavbarDirective() {
 }
 
 class NavbarController {
-  constructor () {
+  constructor (Categories) {
     'ngInject';
     // "this.categories" is available by directive option "bindToController: true"
+
+    // load the navbar
+    this.categories = this.categories || Categories.query((response) => {
+      // on success
+        this.categories = response.data;
+    }, () => {
+      // on fail
+    });
+
     this.isCollapsed = true;
     this.toggleNavbar = () => {
       this.isCollapsed = !this.isCollapsed;

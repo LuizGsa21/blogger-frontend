@@ -1,16 +1,4 @@
-export function runBlock ($log, $rootScope, Categories) {
+export function runBlock ($log) {
   'ngInject';
   $log.debug('runBlock end');
-
-  //// load the navbar
-  //$rootScope.navbar = {
-  //  categories: Categories.query((response) => {
-  //    // on success
-  //    $rootScope.navbar.categories = response.data;
-  //
-  //  }, () => {
-  //    // on fail
-  //  })
-  //};
-
 }

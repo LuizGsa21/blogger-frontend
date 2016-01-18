@@ -19,7 +19,7 @@ describe('directive navbar', function() {
     element = angular.element(`<app-navbar categories="items"></app-navbar>`);
     $element = angular.element(element[0]);
     $compile(element)(scope);
-    $rootScope.$digest();
+    scope.$digest();
   }));
 
   it('should be compiled', () => {
