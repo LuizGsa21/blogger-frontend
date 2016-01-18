@@ -3,7 +3,7 @@ describe('service Model', function() {
 
   var _fixture, Model;
 
-  beforeEach(angular.mock.module('bloggerFrontend'));
+  beforeEach(angular.mock.module('services'));
 
   beforeEach(inject(($window, _Model_) => {
     _fixture = $window.fixtures.getArticle3();

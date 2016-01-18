@@ -1,19 +1,28 @@
 /**
- * The Model contains all resources within the application.
+ * @ngdoc service
+ * @name services.Model
  *
- * @returns {{update: Function, get: Function}}
- * @constructor
+ * @description
+ * All application resources are cached within the Model.
  */
 export function Model() {
-  var _cache = {}, ng = angular;
+  var ng = angular,
+    /**
+     * The resources are stored in the following manner:
+     *  _cache[RESOURCE_TYPE][RESOURCE_ID]
+     *
+     * RESOURCE_TYPE
+     * @type {Object}
+     * @private
+     */
+    _cache = {};
 
   /**
-   * Example of a relationship object:
-   *  - http://jsonapi.org/format/1.0/#document-resource-object-relationships
-   * @param resource
-   * @param relationships
+   * Adds the relationships to the cachedResource
+   * @param {Object} cachedResource cached resource to be updated
+   * @param {Object} relationships a {@link http://jsonapi.org/format/1.0/#document-resource-object-relationships relationship} object
    */
-  function setRelationships(resource, relationships) {
+  function setRelationships(cachedResource, relationships) {
     ng.forEach(relationships, (obj, relationshipName) => {
       var resourceLinkage = obj.data;
       // update and retrieve relationship object from cache
@@ -23,64 +32,89 @@ export function Model() {
         obj = update(resourceLinkage);
 
       // wrap object relationship in a function to prevent circular reference.
-      resource[relationshipName] = (attrName) => {
+      cachedResource[relationshipName] = (attrName) => {
         if (attrName)
           return obj[attrName];
         else return obj;
       };
 
-    }, resource);
+    });
 
   }
 
-  function createResource(model, resource) {
-    let cachedResource = model[resource.id] = {};
-    // a newly created resource should have the id and type attributes
-    cachedResource.id = resource.id;
-    cachedResource.type = resource.type;
-    return cachedResource;
-  }
+  /**
+   * Updates the Model's cache and returns the newly formatted resource.
+   * @param {Object} resource a {@link http://jsonapi.org/format/#document-resource-objects resource}
+   * @returns {Object} the formatted resource
+   */
+  function update(resource) {
+    // get the _cache[RESOURCE_TYPE], create it if it doesn't exist
+    let cachedResourceType = (_cache[resource.type]) || (_cache[resource.type] = {}),
+    // get cached resource
+      cachedResource = cachedResourceType[resource.id];
 
-  function updateCachedResource(cachedResource, resource) {
-
+    if ( ! cachedResource) {
+      cachedResource = cachedResourceType[resource.id] = {};
+      // a newly created resource should have the id and type attributes
+      cachedResource.id = resource.id;
+      cachedResource.type = resource.type;
+    }
+    // update attributes
     if (resource.attributes)
       ng.extend(cachedResource, resource.attributes);
 
+    // update links
     if (resource.links)
       ng.extend(cachedResource, resource.links);
 
+    // update relationships
     if (resource.relationships)
       setRelationships(cachedResource, resource.relationships);
 
     return cachedResource;
   }
 
-  function update(resource) {
-    // get model type, create it if it doesn't exist
-    let model = (_cache[resource.type]) || (_cache[resource.type] = {}),
-      cachedResource = model[resource.id]; // get cached resource
-
-    if (!cachedResource)
-      cachedResource = createResource(model, resource);
-
-    return updateCachedResource(cachedResource, resource);
-  }
-
   return {
-    update: (models) => {
+    /**
+     * @ngdoc method
+     * @name update
+     * @methodOf services.Model
+     *
+     * @description
+     * Updates the Model's cache and returns the newly formatted resource or resources.
+     *
+     * @param {Object|Array} resource a {@link http://jsonapi.org/format/#document-resource-objects resource}
+     * or an array of {@link http://jsonapi.org/format/#document-resource-objects resources}.
+     *
+     * @returns {Object|Array} the formatted resource or resources.
+     */
+    update: (resource) => {
       // update and return resources
-      if (ng.isArray(models)) return models.map(update);
+      if (ng.isArray(resource)) return resource.map(update);
       // update and return resource
-      else return update(models);
+      else return update(resource);
     },
+    /**
+     * @ngdoc method
+     * @name get
+     * @methodOf services.Model
+     *
+     * @description
+     * Returns the cached resource or resources.
+     *
+     * @param {String} type a resource type
+     * @param {Number=} id resource id
+     *
+     * @returns {Object|Array} the cached resource or resources.
+     */
     get: (type, id) => {
-      var model = _cache[type];
+      var cachedResourceType = _cache[type];
 
       // return resource by id
-      if (ng.isNumber(id)) return _cache[type][id];
+      if (ng.isNumber(id)) return cachedResourceType[id];
 
       // return resources
-      return Object.keys(model).map((key) => model[key]);
+      return Object.keys(cachedResourceType).map((key) => cachedResourceType[key]);
     }
   };
 }

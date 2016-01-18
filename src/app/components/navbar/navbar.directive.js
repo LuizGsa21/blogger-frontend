@@ -1,6 +1,16 @@
 export function NavbarDirective() {
   'ngInject';
   'ui.bootstrap';
+  /**
+   * @ngdoc directive
+   * @name app.directive:appNavbar
+   * @restrict E
+   * @scope
+   * @description
+   * If the `categories` attribute is specified, a dropdown menu specifying each category will be generated.
+   *
+   * @param {Object[]=} categories an array of categories.
+   **/
   return {
     restrict: 'E',
     templateUrl: 'app/components/navbar/navbar.html',

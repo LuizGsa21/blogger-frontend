@@ -63,5 +63,5 @@ gulp.task('serve:e2e-dist', ['build'], function () {
 });
 
 gulp.task('serve:doc', ['ngdocs'], function () {
-  browserSyncInit([conf.paths.docs, conf.paths.docs]);
+  browserSyncInit([conf.paths.docs, conf.paths.src]);
 });

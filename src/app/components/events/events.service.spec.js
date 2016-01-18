@@ -2,7 +2,7 @@ describe('service Events', () => {
 
   var Events;
 
-  beforeEach(angular.mock.module('bloggerFrontend'));
+  beforeEach(angular.mock.module('services'));
 
   beforeEach(inject(_Events_ => {
     Events = _Events_;
@@ -17,8 +17,4 @@ describe('service Events', () => {
     expect(Events.USER_LOGOUT_FAILED).toBeDefined();
   });
 
-  it('should define Events for http requests', () => {
-    expect(Events.HTTP_REQUEST).toBeDefined();
-    expect(Events.HTTP_RESPONSE).toBeDefined();
-  });
 });

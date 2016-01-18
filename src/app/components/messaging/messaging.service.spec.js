@@ -1,6 +1,6 @@
 describe('service Messaging', () => {
   var mock, Messaging, event = Symbol('event');
-  beforeEach(angular.mock.module('bloggerFrontend'));
+  beforeEach(angular.mock.module('services'));
 
   beforeEach(inject((_Messaging_) => {
     Messaging = _Messaging_;

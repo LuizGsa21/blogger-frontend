@@ -1,9 +1,9 @@
 describe('factory Authentication', () => {
   var module = angular.mock.module;
-  var Messaging, Events, Authentication, $httpBackend, requestHandler, constants;
+  var Messaging, Events, Authentication, $httpBackend, requestHandler, Constants;
 
   // Set up the module
-  beforeEach(module('bloggerFrontend'));
+  beforeEach( module('services'));
 
   // create mock for Messaging service
   beforeEach(() => {
@@ -23,7 +23,7 @@ describe('factory Authentication', () => {
   beforeEach(inject(($injector) => {
       Events = $injector.get('Events');
       Authentication = $injector.get('Authentication');
-      constants = $injector.get('constants');
+      Constants = $injector.get('Constants');
     })
   );
 
@@ -49,7 +49,7 @@ describe('factory Authentication', () => {
     beforeEach(inject(($injector) => {
       $httpBackend = $injector.get('$httpBackend');
       requestHandler = $httpBackend
-        .expect('POST', constants.USER_LOGIN_URL)
+        .expect('POST', Constants.USER_LOGIN_URL)
         .respond({data: {username: 'user1'}});
     }));
 
@@ -85,7 +85,7 @@ describe('factory Authentication', () => {
     beforeEach(inject(($injector) => {
       $httpBackend = $injector.get('$httpBackend');
       requestHandler = $httpBackend
-        .expect('POST', constants.USER_LOGOUT_URL)
+        .expect('POST', Constants.USER_LOGOUT_URL)
         .respond('success');
     }));
 

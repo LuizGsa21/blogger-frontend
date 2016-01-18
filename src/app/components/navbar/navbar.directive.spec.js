@@ -3,7 +3,7 @@ describe('directive navbar', function() {
   let $element;
   let scope;
 
-  beforeEach(angular.mock.module('bloggerFrontend'));
+  beforeEach(angular.mock.module('app'));
 
   beforeEach(inject(($compile, $rootScope) => {
     let categories = {

@@ -1,7 +1,7 @@
 describe('controllers', () => {
   //let vm;
   //
-  //beforeEach(angular.mock.module('bloggerFrontend'));
+  //beforeEach(angular.mock.module('app'));
   //
   //beforeEach(inject(($controller, webDevTec, toastr) => {
   //  spyOn(webDevTec, 'getTec').and.returnValue([{}, {}, {}, {}, {}]);
