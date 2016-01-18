@@ -12,6 +12,9 @@ export function TransformApiResponse(Model) {
    * @param {String} response a valid JSON API {@link http://jsonapi.org/format/#document-top-level response}
    */
   return (response) => {
+    // don't transform response if its invalid
+    if ( ! response) return response;
+
     response = jsonParse(response);
     if ('data' in response) {
       response['data'] = Model.update(response['data']);
