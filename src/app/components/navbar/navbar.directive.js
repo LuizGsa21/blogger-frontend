@@ -34,6 +34,7 @@ class NavbarController {
         this.categories = response.data;
     }, () => {
       // on fail
+        this.categories = [];
     });
 
     this.isCollapsed = true;
