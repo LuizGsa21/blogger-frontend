@@ -3,9 +3,16 @@ export function routerConfig($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('main', {
       url: '/',
-      templateUrl: 'app/main/main.html',
-      controller: 'MainController',
-      controllerAs: 'main'
+      views: {
+        '': {
+          templateUrl: 'app/main/main.html',
+          controller: 'MainController'
+        },
+        'loginFormView@main': {
+          templateUrl: 'app/components/login_form/login_form.html',
+          controller: 'LoginFormController'
+        }
+      }
     })
     .state('articles', {
       url: '/:category/',

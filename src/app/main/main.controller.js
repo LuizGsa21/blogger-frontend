@@ -12,6 +12,5 @@ export class MainController {
   constructor ($scope, $controller) {
     'ngInject';
     $controller('BaseController', {$scope: $scope});
-
   }
 }

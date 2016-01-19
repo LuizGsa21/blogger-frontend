@@ -8,12 +8,14 @@
  * and {@link https://code.angularjs.org/1.4.8/docs/api/ng/type/$rootScope.Scope#$on $on} methods to reduce strain on the digest loop.
  */
 export class Messaging {
-  constructor() {
+  constructor($log) {
+    'ngInject';
     /**
      * Holds all the subscribers for each event and their callbacks.
      * @type {services.Events.*: Array}
      */
     this.cache = {};
+    this.$log = $log;
   }
 
   /**
@@ -72,6 +74,7 @@ export class Messaging {
    * @param {Array=} args an array containing the arguments to pass to the subscriber.
    */
   publish(topic, args = []) {
+    this.$log.debug('Fired event:', topic);
     var callbacks = this.cache[topic];
 
     if (callbacks && callbacks.length) {

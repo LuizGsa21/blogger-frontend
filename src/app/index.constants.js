@@ -8,7 +8,7 @@
  * @name services.Constants#BASE_API_URL
  * @propertyOf services.Constants
  */
-export const BASE_API_URL = 'http://blogger.com/api/v1';
+export const BASE_API_URL = 'http://localhost:3000/api/v1';
 
 /**
  * @ngdoc property

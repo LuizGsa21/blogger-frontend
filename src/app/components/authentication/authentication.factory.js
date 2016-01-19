@@ -12,7 +12,7 @@
  * @requires services.Events
  * @requires services.Constants
  */
-export function Authentication($http, Messaging, Events, Constants) {
+export function Authentication($http, Messaging, Events, Constants, $log) {
   'ngInject';
 
   function onUserLoginSuccess(data) {
@@ -45,6 +45,7 @@ export function Authentication($http, Messaging, Events, Constants) {
    * @param {string} password user's password
    */
   function login(username, password) {
+    $log.debug(`Logging in user: ${username}`);
     $http({
       method: 'POST',
       url: Constants.USER_LOGIN_URL,
