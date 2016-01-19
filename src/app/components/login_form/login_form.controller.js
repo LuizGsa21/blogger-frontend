@@ -19,5 +19,10 @@ export class LoginFormController {
     $scope.login = () => {
       $scope.publish($scope.events.USER_LOGIN, [$scope.username, $scope.password]);
     };
+
+    $scope.register = () => {
+      $scope.publish($scope.events.USER_REGISTER, [$scope.email, $scope.username, $scope.password]);
+    }
+
   }
 }

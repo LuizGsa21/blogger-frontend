@@ -1,9 +1,29 @@
-<form  ng-controller="LoginFormController" method="post" ng-submit="login()" name="loginForm" ng-hide="hideForm">
-  <div class="form-group">
-    <input name="username" class="form-control" type="text" placeholder="username" ng-model="username" required>
-  </div>
-  <div class="form-group">
-    <input name="password" class="form-control" type="password" placeholder="password" ng-model="password" required>
-  </div>
-  <button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid">Login</button>
-</form>
+<div ng-controller="LoginFormController" ng-hide="hideForm">
+  <uib-tabset justified="true">
+    <uib-tab heading="Login">
+      <form method="post" ng-submit="login()" name="loginForm">
+        <div class="form-group">
+          <input name="username" class="form-control" type="text" placeholder="username" ng-model="username" required>
+        </div>
+        <div class="form-group">
+          <input name="password" class="form-control" type="password" placeholder="password" ng-model="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid">Login</button>
+      </form>
+    </uib-tab>
+    <uib-tab heading="Register">
+      <form method="post" ng-submit="register()" name="registerForm">
+        <div class="form-group">
+          <input name="email" class="form-control" type="text" placeholder="email" ng-model="email" required>
+        </div>
+        <div class="form-group">
+          <input name="username" class="form-control" type="text" placeholder="username" ng-model="username" required>
+        </div>
+        <div class="form-group">
+          <input name="password" class="form-control" type="password" placeholder="password" ng-model="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-disabled="registerForm.$invalid">Register</button>
+      </form>
+    </uib-tab>
+  </uib-tabset>
+</div>

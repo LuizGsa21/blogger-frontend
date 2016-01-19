@@ -48,5 +48,27 @@ export class Events {
      * @propertyOf services.Events
      */
     this.USER_LOGOUT_FAILED = Symbol('USER_LOGOUT_FAILED');
+
+    /**
+     * @ngdoc property
+     * @name services.Events#USER_REGISTER
+     * @propertyOf services.Events
+     */
+    this.USER_REGISTER = Symbol('USER_REGISTER');
+
+    /**
+     * @ngdoc property
+     * @name services.Events#USER_REGISTER_COMPLETE
+     * @propertyOf services.Events
+     */
+    this.USER_REGISTER_COMPLETE = Symbol('USER_REGISTER_COMPLETE');
+
+    /**
+     * @ngdoc property
+     * @name services.Events#USER_REGISTER_FAILED
+     * @propertyOf services.Events
+     */
+    this.USER_REGISTER_FAILED = Symbol('USER_REGISTER_FAILED');
+
   }
 }
