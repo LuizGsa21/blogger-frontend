@@ -25,7 +25,7 @@ import { ArticlesController } from './view_articles/articles.controller.js';
 
 
 /**
- * @ngdoc object
+ * @ngdoc overview
  * @name services
  * @description Contains a collection of services
  */
@@ -39,7 +39,7 @@ angular.module('services', ['ngCookies'])
   .service('CurrentUser', CurrentUser);
 
 /**
- * @ngdoc object
+ * @ngdoc overview
  * @name resources
  * @description Contains Resources used by the application for CRUD operations.
  */
@@ -49,7 +49,7 @@ angular.module('resources', ['services'])
   .factory('Articles', Articles);
 
 /**
- * @ngdoc object
+ * @ngdoc overview
  * @name app
  * @description This is the main module.
  */

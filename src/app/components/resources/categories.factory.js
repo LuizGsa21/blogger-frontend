@@ -3,7 +3,7 @@
  * @name resources.Categories
  *
  * @requires $resource
- * @requires services.Constants#RESOURCE_CATEGORIES_URL
+ * @requires services.Constants.RESOURCE_CATEGORIES_URL
  * @requires services.TransformApiResponse
  *
  */

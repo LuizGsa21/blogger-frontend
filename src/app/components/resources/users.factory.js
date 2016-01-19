@@ -3,7 +3,7 @@
  * @name resources.Users
  *
  * @requires $resource
- * @requires services.Constants#RESOURCE_USERS_URL
+ * @requires services.Constants.RESOURCE_USERS_URL
  * @requires services.TransformApiResponse
  *
  */
