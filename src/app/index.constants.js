@@ -26,6 +26,13 @@ export const USER_LOGOUT_URL = `${BASE_API_URL}/auth/logout`;
 
 /**
  * @ngdoc property
+ * @name services.Constants#USER_REGISTER_URL
+ * @propertyOf services.Constants
+ */
+export const USER_REGISTER_URL = `${BASE_API_URL}/auth/register`;
+
+/**
+ * @ngdoc property
  * @name services.Constants#RESOURCE_USERS_URL
  * @propertyOf services.Constants
  */
