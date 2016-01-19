@@ -19,8 +19,8 @@ import { Categories } from '../app/components/resources/categories.factory.js';
 // Controllers
 import { BaseController } from './components/base/base.controller.js';
 import { LoginFormController } from './components/login_form/login_form.controller.js';
-import { MainController } from './main/main.controller';
-//import { ArticlesController } from './view_articles/articles.controller.js';
+import { MainController } from './view_main/main.controller';
+import { ArticlesController } from './view_articles/articles.controller.js';
 
 
 
@@ -71,6 +71,6 @@ angular.module('app', [
   .controller('BaseController', BaseController)
   .controller('LoginFormController', LoginFormController)
   .controller('MainController', MainController)
-  //.controller('ArticlesController', ArticlesController)
+  .controller('ArticlesController', ArticlesController)
   .directive('appNavbar', NavbarDirective)
   .run(runBlock);
