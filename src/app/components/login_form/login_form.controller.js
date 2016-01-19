@@ -8,7 +8,13 @@ export class LoginFormController {
     $scope.password = '';
     $scope.hideForm = CurrentUser.isLoggedIn();
 
-    $scope.subscribe($scope.events.USER_LOGIN_COMPLETE, () => $scope.hideForm = true);
+    $scope.subscribe($scope.events.USER_LOGIN_COMPLETE, () => {
+      $scope.hideForm = true;
+      $scope.username = '';
+      $scope.password = '';
+    });
+
+    $scope.subscribe($scope.events.USER_LOGOUT_COMPLETE, () => $scope.hideForm = false);
 
     $scope.login = () => {
       $scope.publish($scope.events.USER_LOGIN, [$scope.username, $scope.password]);

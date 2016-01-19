@@ -21,7 +21,8 @@
             <li ui-sref-active="active" ng-repeat="category in nv.categories"><a ui-sref="articles({category: category.name})">{{ category.name }}</a></li>
           </ul>
         </li>
-        <li><a ng-click="">Login</a></li>
+        <li ng-hide="nv.isLoggedIn"><a>Login</a></li>
+        <li ng-hide="!nv.isLoggedIn" ng-click="nv.logout()"><a>Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

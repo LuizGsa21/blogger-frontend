@@ -24,11 +24,12 @@ export function NavbarDirective() {
 }
 
 class NavbarController {
-  constructor (Categories) {
+  constructor ($scope, $controller, Categories, CurrentUser) {
     'ngInject';
+    $controller('BaseController', {$scope: $scope});
     // "this.categories" is available by directive option "bindToController: true"
 
-    // load the navbar
+    // load the dropdown items
     this.categories = this.categories || Categories.query((response) => {
       // on success
         this.categories = response.data;
@@ -41,5 +42,25 @@ class NavbarController {
     this.toggleNavbar = () => {
       this.isCollapsed = !this.isCollapsed;
     };
+
+    this.isLoggedIn = CurrentUser.isLoggedIn();
+
+
+    this.logout = () => {
+      $scope.publish($scope.events.USER_LOGOUT);
+    };
+
+
+    this.onUserLogin = () => {
+      this.isLoggedIn = true;
+    };
+
+    this.onUserLogout = () => {
+      this.isLoggedIn = false;
+    };
+
+    $scope.subscribe($scope.events.USER_LOGIN_COMPLETE, this.onUserLogin);
+    $scope.subscribe($scope.events.USER_LOGOUT_COMPLETE, this.onUserLogout);
+
   }
 }
