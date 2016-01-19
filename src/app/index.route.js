@@ -5,7 +5,7 @@ export function routerConfig($stateProvider, $urlRouterProvider) {
       url: '/',
       views: {
         '': {
-          templateUrl: 'app/main/main.html',
+          templateUrl: 'app/view_main/main.html',
           controller: 'MainController'
         },
         'loginFormView@main': {
